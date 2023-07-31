@@ -48,7 +48,7 @@ public class JavaApplication82 {
             }
             case 2 -> {
                 Register reg = new Register();
-                reg.registerPainel();
+                reg.register();
             }
             case 3 -> {
                 mensageLeave();

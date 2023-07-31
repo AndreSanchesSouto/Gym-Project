@@ -14,13 +14,21 @@ import java.util.Scanner;
 public class Register{
     
     Scanner sc = new Scanner(System.in);
+    Scanner ss = new Scanner(System.in);
     
-    private String nameUser;
+    private String nameUser, passwordUser, nicknameUser;
     private int yearBornUser;
     private float cpfUser, weightUser, heightUser, imcUser;
     private String perfilUser;
     
-    public void registerPainel(){
+    public void register(){
+        registerPainel();
+        setNicknameUser();
+        createPassword();
+        
+    }
+    
+    private void registerPainel(){
         
         System.out.print("--Insert here yours informations--\nName user: ");
         setNameUser(sc.nextLine());
@@ -33,28 +41,29 @@ public class Register{
         
         System.out.println("\n"+ nameUser +", you will be redirected to include your personalities information to help us on your plan of exercices");
         perfilUser();
+        
         System.out.println(getPerfilUser());
         
     }
     
-    private void perfilUser(){
+    protected void perfilUser(){
         
-        System.out.println("");
+        System.out.print("type here your weight: ");
         setWeightUser(sc.nextFloat());
         
-        System.out.println("");
+        System.out.print("Type here your height: ");
         setHeightUser(sc.nextFloat());
         
         setImc();
         
         if(getImc() < 18.5){
-            setPerfilUser("magreza");
+            setPerfilUser("Magreza");
             
         }else if(getImc() < 24.9){
-            setPerfilUser("adequado");
+            setPerfilUser("Adequado");
         
         }else if(getImc() < 29.9){
-            setPerfilUser("sobrepeso");
+            setPerfilUser("Sobrepeso");
 
         }else if(getImc() < 34.9){
             setPerfilUser("Obesidade grau I");
@@ -69,6 +78,13 @@ public class Register{
         
     }
     
+    private void createPassword(){
+        System.out.println("Create your Password to the nick:"+ getNicknameUser());
+        setPasswordUser(ss.nextLine());
+        System.out.println(getPasswordUser());
+        
+    }
+    
     public String getNameUser(){
         return this.nameUser;
     }
@@ -77,6 +93,22 @@ public class Register{
         this.nameUser = name;
     }
 
+    protected String getPasswordUser(){
+        return this.passwordUser;
+    }
+
+    private void setPasswordUser(String password){
+        this.passwordUser = password;
+    }
+    
+    public String getNicknameUser(){
+        return this.nicknameUser;
+    }
+    
+    public void setNicknameUser(){
+        this.nicknameUser = getNameUser() + getPerfilUser() + getYearBornUser();
+    }
+    
     public int getYearBornUser(){
         return this.yearBornUser;
     }
