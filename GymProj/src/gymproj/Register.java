@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package javaapplication82;
+package gymproj;
 
 /**
  *
@@ -94,7 +94,7 @@ public class Register{
     private void stopRegister(){
         System.out.println("This cpf is already being used\n[0]- Ok;");
         sc.nextLine();
-        GymProject.initialPainel();
+        GymProj.initialPainel();
     }
     
     public String getNameUser(){
