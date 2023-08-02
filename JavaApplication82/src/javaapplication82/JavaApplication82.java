@@ -29,34 +29,36 @@ public class JavaApplication82 {
         
         int wantTo;
         
-        System.out.println("""
-                           --Wellcome to the BlubGym--\n\n
-                           What do you want to?
-                           [1]- Loggin;
-                           [2]- Register;
-                           [3]- Leave;
-                           [4]- Info;
-                           """);
-        
-        wantTo = sc.nextInt();
-        
-        switch(wantTo){
-            
-            case 1 -> {
-               Loggin log = new Loggin();
-               log.yes();
+        do{
+            System.out.println("""
+                               --Wellcome to the BlubGym--\n\n
+                               What do you want to?
+                               [1]- Loggin;
+                               [2]- Register;
+                               [3]- Leave;
+                               [4]- Info;
+                               """);
+
+            wantTo = sc.nextInt();
+
+            switch(wantTo){
+
+                case 1 -> {
+                   Loggin log = new Loggin();
+                   log.yes();
+                }
+                case 2 -> {
+                    Register reg = new Register();
+                    reg.register();
+                }
+                case 3 -> {
+                    mensageLeave();
+                }
+                case 4 -> {
+                    info();
+                }
             }
-            case 2 -> {
-                Register reg = new Register();
-                reg.register();
-            }
-            case 3 -> {
-                mensageLeave();
-            }
-            case 4 -> {
-                info();
-            }
-        }
+        }while(wantTo!=4);
         
     }
     

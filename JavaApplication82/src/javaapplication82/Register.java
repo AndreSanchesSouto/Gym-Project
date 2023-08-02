@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Register{
     
     Scanner sc = new Scanner(System.in);
-    Scanner ss = new Scanner(System.in);
+   
     
     private String nameUser, passwordUser, nicknameUser;
     private int yearBornUser;
@@ -30,7 +30,7 @@ public class Register{
     
     private void registerPainel(){
         
-        System.out.print("--Insert here yours informations--\nName user: ");
+        System.out.print("--Insert here yours informations--\nYour name: ");
         setNameUser(sc.nextLine());
         
         System.out.print("Year you've born: ");
@@ -39,7 +39,7 @@ public class Register{
         System.out.print("Your CPF (with no character, just numbers): ");
         setCpfUser(sc.nextFloat());
         
-        System.out.println("\n"+ nameUser +", you will be redirected to include your personalities information to help us on your plan of exercices");
+        System.out.println("\n"+ getNameUser() +", you will be redirected to include your personalities information to help us on your plan of exercices");
         perfilUser();
         
         System.out.println(getPerfilUser());
@@ -80,7 +80,8 @@ public class Register{
     
     private void createPassword(){
         System.out.println("Create your Password to the nick:"+ getNicknameUser());
-        setPasswordUser(ss.nextLine());
+        sc.nextLine();
+        setPasswordUser(sc.nextLine());
         System.out.println(getPasswordUser());
         
     }
@@ -97,7 +98,7 @@ public class Register{
         return this.passwordUser;
     }
 
-    private void setPasswordUser(String password){
+    protected void setPasswordUser(String password){
         this.passwordUser = password;
     }
     
@@ -129,7 +130,7 @@ public class Register{
         return this.perfilUser;
     }
     
-    private void setPerfilUser(String perfil){
+    protected void setPerfilUser(String perfil){
         this.perfilUser = perfil;
     }
 
@@ -137,15 +138,15 @@ public class Register{
         return this.weightUser;
     }
 
-    private void setWeightUser(float weig) {
+    protected void setWeightUser(float weig) {
         this.weightUser = weig;
     }
 
     public float getHeighUser() {
         return this.heightUser;
     }
-
-    private void setHeightUser(float heig) {
+    
+    protected void setHeightUser(float heig) {
         this.heightUser = heig;
     }
     
