@@ -21,10 +21,11 @@ public class Register{
     private float cpfUser, weightUser, heightUser, imcUser;
     private String perfilUser;
     
-    public void register(){
+    public int regist(int na){
         registerPainel();
         setNicknameUser();
         createPassword();
+        return na;
         
     }
     
@@ -36,7 +37,7 @@ public class Register{
         System.out.print("Year you've born: ");
         setYearBornUser(sc.nextInt());
         
-        System.out.print("Your CPF (with no character, just numbers): ");
+        System.out.print("Your CPF (just numbers): ");
         setCpfUser(sc.nextFloat());
         
         System.out.println("\n"+ getNameUser() +", you will be redirected to include your personalities information to help us on your plan of exercices");
@@ -54,7 +55,7 @@ public class Register{
         System.out.print("Type here your height: ");
         setHeightUser(sc.nextFloat());
         
-        setImc();
+        setImc(getWeightUser(), getHeighUser());
         
         if(getImc() < 18.5){
             setPerfilUser("Magreza");
@@ -84,6 +85,16 @@ public class Register{
         setPasswordUser(sc.nextLine());
         System.out.println(getPasswordUser());
         
+    }
+    
+    private boolean cpfNotLogged(float cpf){
+        return false;
+    }
+    
+    private void stopRegister(){
+        System.out.println("This cpf is already being used\n[0]- Ok;");
+        sc.nextLine();
+        GymProject.initialPainel();
     }
     
     public String getNameUser(){
@@ -123,7 +134,13 @@ public class Register{
     }
 
     public void setCpfUser(float cpf){
-        this.cpfUser = cpf;
+        if(cpfNotLogged(cpf)){
+            this.cpfUser = cpf;
+            
+        }else{
+            stopRegister();
+        }
+        
     }
     
     public String getPerfilUser(){
@@ -154,8 +171,8 @@ public class Register{
         return this.imcUser;
     }
     
-    private void setImc(){
-        this.imcUser = getWeightUser()/(getHeighUser()*getHeighUser());
+    private void setImc(float wei, float hei){
+        this.imcUser = wei/(hei*hei);
         
     }
     

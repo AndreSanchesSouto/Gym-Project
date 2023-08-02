@@ -11,7 +11,7 @@ package javaapplication82;
 
 import java.util.Scanner;
 
-public class JavaApplication82 {
+public class GymProject {
 
     /**
      * @param args the command line arguments
@@ -19,6 +19,8 @@ public class JavaApplication82 {
     
     static Scanner sc = new Scanner(System.in);
     
+    public static int numberAccount=0;
+            
     public static void main(String[] args) {
         // TODO code application logic here
         initialPainel();
@@ -30,13 +32,13 @@ public class JavaApplication82 {
         int wantTo;
         
         do{
-            System.out.println("""
+            System.out.print("""
                                --Wellcome to the BlubGym--\n\n
                                What do you want to?
                                [1]- Loggin;
                                [2]- Register;
-                               [3]- Leave;
-                               [4]- Info;
+                               [3]- Info;
+                               [4]- Leave.
                                """);
 
             wantTo = sc.nextInt();
@@ -44,18 +46,20 @@ public class JavaApplication82 {
             switch(wantTo){
 
                 case 1 -> {
-                   Loggin log = new Loggin();
-                   log.yes();
+                   Loggin loggin = new Loggin();
+                   loggin.logg();
                 }
                 case 2 -> {
-                    Register reg = new Register();
-                    reg.register();
+                    numberAccount++;
+                    Register register[] = new Register[numberAccount];
+                    numberAccount=register[numberAccount].regist(numberAccount);
+                    
                 }
                 case 3 -> {
-                    mensageLeave();
+                   info();
                 }
                 case 4 -> {
-                    info();
+                    mensageLeave();
                 }
             }
         }while(wantTo!=4);

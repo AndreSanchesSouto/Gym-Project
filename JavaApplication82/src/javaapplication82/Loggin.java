@@ -9,7 +9,9 @@ package javaapplication82;
  * @author andre
  */
 public class Loggin extends Register {
-    public void yes(){
-        System.out.println("worked");
+    
+    public void logg(){
+        
     }
+            
 }
