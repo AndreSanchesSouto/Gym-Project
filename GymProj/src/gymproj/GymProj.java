@@ -19,19 +19,17 @@ public class GymProj {
     
     static Scanner sc = new Scanner(System.in);
     
+    static Register registredUsers[] = new Register[100];
+    
     public static int numberAccount=0;
             
     public static void main(String[] args) {
         // TODO code application logic here
-        initialPainel();
-        
-    }
-    
-    public static void initialPainel(){
-        
+  
         int wantTo;
-        
+         
         do{
+            
             System.out.print("""
                                --Wellcome to the BlubGym--\n\n
                                What do you want to?
@@ -46,17 +44,31 @@ public class GymProj {
             switch(wantTo){
 
                 case 1 -> {
-                   Loggin loggin = new Loggin();
-                   loggin.logg();
+                    Loggin loggin = new Loggin(numberAccount);
+                    loggin.logg();
                 }
                 case 2 -> {
-                    numberAccount++;
-                    Register register[] = new Register[numberAccount];
-                    numberAccount=register[numberAccount].regist(numberAccount);
+                    Register register[] = new Register[numberAccount+1];
+                    register[numberAccount] = new Register(numberAccount);
+                    
+                    if(!register[numberAccount].isCpfExist()){
+                        registredUsers[numberAccount] = register[numberAccount];
+                        numberAccount++;
+                    }
+                    System.out.println("=============");
+                    System.out.println("valor de numberAccount: "+ numberAccount);
+
+                    if(sc.nextInt()==1){
+                        System.out.println(registredUsers[0].toString());
+                        if(sc.nextInt()==2){
+                            System.out.println(registredUsers[1].toString());
+                        }
+                    }
+                    
                     
                 }
                 case 3 -> {
-                   info();
+                    info();
                 }
                 case 4 -> {
                     mensageLeave();

@@ -9,6 +9,10 @@ package gymproj;
  * @author andre
  */
 public class Loggin extends Register {
+
+    public Loggin(int numbAccount) {
+        super(numbAccount);
+    }
     
     public void logg(){
         

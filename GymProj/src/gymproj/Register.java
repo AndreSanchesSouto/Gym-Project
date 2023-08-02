@@ -14,19 +14,17 @@ import java.util.Scanner;
 public class Register{
     
     Scanner sc = new Scanner(System.in);
-   
     
     private String nameUser, passwordUser, nicknameUser;
     private int yearBornUser;
     private float cpfUser, weightUser, heightUser, imcUser;
     private String perfilUser;
-    
-    public int regist(int na){
+    private boolean cpfExist;
+
+    public Register(int numbAccount){
         registerPainel();
-        setNicknameUser();
+        setNicknameUser(numbAccount);
         createPassword();
-        return na;
-        
     }
     
     private void registerPainel(){
@@ -83,18 +81,18 @@ public class Register{
         System.out.println("Create your Password to the nick:"+ getNicknameUser());
         sc.nextLine();
         setPasswordUser(sc.nextLine());
-        System.out.println(getPasswordUser());
+        System.out.println("Your password is: "+getPasswordUser()+"\n[0]- Ok;");
+        sc.nextInt();
         
     }
     
-    private boolean cpfNotLogged(float cpf){
+    private boolean cpfLogged(){
         return false;
     }
     
-    private void stopRegister(){
-        System.out.println("This cpf is already being used\n[0]- Ok;");
-        sc.nextLine();
-        GymProj.initialPainel();
+    private void stopPerfilCreation(){
+        System.out.println("This cps is already being used\n[0]- Ok;");
+        sc.nextInt();
     }
     
     public String getNameUser(){
@@ -117,8 +115,8 @@ public class Register{
         return this.nicknameUser;
     }
     
-    public void setNicknameUser(){
-        this.nicknameUser = getNameUser() + getPerfilUser() + getYearBornUser();
+    public void setNicknameUser(int na){
+        this.nicknameUser = getNameUser() + getPerfilUser() + na;
     }
     
     public int getYearBornUser(){
@@ -131,16 +129,6 @@ public class Register{
 
     public double getCpfUser(){
         return this.cpfUser;
-    }
-
-    public void setCpfUser(float cpf){
-        if(cpfNotLogged(cpf)){
-            this.cpfUser = cpf;
-            
-        }else{
-            stopRegister();
-        }
-        
     }
     
     public String getPerfilUser(){
@@ -175,5 +163,29 @@ public class Register{
         this.imcUser = wei/(hei*hei);
         
     }
+
+    public boolean isCpfExist(){
+        return this.cpfExist;
+    }
+    
+    public void setCpfUser(float cpf){
+        if(cpfLogged()){
+            this.cpfUser = cpf;
+            this.cpfExist = true;
+            stopPerfilCreation();  
+        }else
+            this.cpfExist = false;
+        
+    }
+    
+
+    @Override
+    public String toString() {
+        return "Register{" + "nicknameUser=" + nicknameUser + ", perfilUser=" + perfilUser + '}';
+    }
+
+   
+    
+    
     
 }
