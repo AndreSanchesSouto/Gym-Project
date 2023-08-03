@@ -7,15 +7,21 @@ package gymproj;
 /**
  *
  * @author andre
- */
-public class Loggin extends Register {
+ */ 
+
+public class Loggin extends Register{
 
     public Loggin(int numbAccount) {
         super(numbAccount);
+        confirmIdentity();
     }
     
-    public void logg(){
-        
+    
+    public void confirmIdentity(){
+        System.out.println(this.getNameUser());
     }
-            
+    
+  
 }
+            
+
