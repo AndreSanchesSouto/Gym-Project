@@ -101,9 +101,14 @@ public class GymProj {
                 register[na].setPasswordUser(sc.nextLine());
                 System.out.println("Your password is: "+ register[na].getPasswordUser() +"\n[]- Ok;");
                 sc.nextLine();
+                
+                registredUsers[na] = register[na];
                 numberAccountRegister++;
                 
-                        System.out.println( register[na].toString());
+                        if(na==1){
+                        System.out.println( registredUsers[na].toString());
+                                                System.out.println( registredUsers[na-1].toString());
+                        }
 
             }else
                 System.out.println("=="+ register[na].stopPerfilCreation() +"==");
