@@ -12,16 +12,17 @@ package gymproj;
 public class Register{
     
     private String nameUser, passwordUser, nicknameUser, perfilUser;
-    private int yearBornUser;
+    private int yearBornUser, na;
     private float cpfUser, weightUser, heightUser, imcUser;
     private boolean cpfAllowed;
 
     public Register(int numbAccount){
         this.nameUser = "";
         this.passwordUser = ""; 
-        this.nicknameUser = ""; 
+        this.nicknameUser=""; 
         this.perfilUser = "";
         this.yearBornUser = 0;
+        this.na = ++numbAccount;
         this.cpfUser = 0;
         this.weightUser = 0; 
         this.heightUser = 0;
@@ -29,34 +30,23 @@ public class Register{
         this.cpfAllowed = false;
     }
     
-    public void registerPainel(){
-        
-        System.out.print("--Insert here yours informations--\nYour name: ");
-        setNameUser(sc.nextLine());
-        
-        System.out.print("Year you've born: ");
-        setYearBornUser(sc.nextInt());
-        
-        System.out.print("Your CPF (just numbers): ");
-        setCpfUser(sc.nextFloat());
-        
-        System.out.println("\n"+ getNameUser() +", you will be redirected to include your personalities information to help us on your plan of exercices");
-        setPerfilUser();
+    public void registerPainel(String name, int year, float cpf){
+       
+        setNameUser(name);
+        setYearBornUser(year);
+        setCpfUser(cpf);
         
     }
     
-    private void createPassword(){
-        System.out.println("Create your Password to the nick:"+ getNicknameUser());
-        sc.nextLine();
-        setPasswordUser(sc.nextLine());
-        System.out.println("Your password is: "+getPasswordUser()+"\n[0]- Ok;");
-        sc.nextInt();
+    public String createPassword(String pass){
+        
+        setPasswordUser(pass);
+        return getPasswordUser();
         
     }
     
-    private void stopPerfilCreation(){
-        System.out.println("This cps is already being used, or just dont exist.\n[0]- Ok;");
-        sc.nextInt();
+    public String stopPerfilCreation(){
+        return "This cps is already being used, or just dont exist.";
     }
     
     public String getNameUser(){
@@ -76,14 +66,15 @@ public class Register{
     }
     
     public String getNicknameUser(){
+        setNicknameUser();
         return this.nicknameUser;
     }
     
-    public void setNicknameUser(int na){
-        this.nicknameUser = getNameUser() + getPerfilUser() + na;
+    private void setNicknameUser(){
+        this.nicknameUser = getNameUser() + getPerfilUser() +"_"+ na;
     }
     
-    protected void setPerfilUser(){
+    public void setPerfilUser(){
                 
         setImc(getWeightUser(), getHeighUser());
         
@@ -168,26 +159,25 @@ public class Register{
         return this.cpfAllowed;
     }
     
-    protected void setCpfAllowed(){
+    private void setCpfAllowed(){
         this.cpfAllowed = isCpfExist(getCpfUser()) && !isCpfLogged(getCpfUser());
        
     }
     
-    public boolean isCpfExist(float cpf){
+    private boolean isCpfExist(float cpf){
         return true;
     }
     
     private boolean isCpfLogged(float cpf){
         return false;
     }
-    
+
     @Override
     public String toString() {
-        return """
-               --Registred--
-               User name:""" + nameUser + "\n"
-                + "Perfil User:" + perfilUser;
+        return "Register{" + "nameUser=" + nameUser + ", passwordUser=" + passwordUser + ", nicknameUser=" + nicknameUser + ", perfilUser=" + perfilUser + ", yearBornUser=" + yearBornUser + ", cpfUser=" + cpfUser + ", weightUser=" + weightUser + ", heightUser=" + heightUser + ", imcUser=" + imcUser + ", cpfAllowed=" + cpfAllowed + '}';
     }
+    
+    
 
    
     

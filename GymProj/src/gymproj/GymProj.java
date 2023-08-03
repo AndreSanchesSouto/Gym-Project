@@ -38,31 +38,11 @@ public class GymProj {
                                """);
 
             wantTo = sc.nextInt();
+            sc.nextLine();
 
             switch(wantTo){
 
-                case 1 -> {
-                    Register register[] = new Register[numberAccountRegister+1];
-                    register[numberAccountRegister] = new Register(numberAccountRegister);
-                    register[numberAccountRegister].registerPainel();
-                    
-                    System.out.print("type here your weight: ");
-                    register[numberAccountRegister].setWeightUser(sc.nextFloat());
-
-                    System.out.print("Type here your height: ");
-                    register[numberAccountRegister].setHeightUser(sc.nextFloat());
-
-                    if(register[numberAccountRegister].isCpfAllowed()){
-                        
-                        registredUsers[numberAccountRegister] = register[numberAccountRegister];
-                        System.out.println("=========");
-                        System.out.println(registredUsers[0].getNameUser());
-                        System.out.println("=========");
-                        numberAccountRegister++;
-                        
-                    }
-                }
-                
+                case 1 -> register(numberAccountRegister);
                 case 2 -> {
                     int numbReg;
                     
@@ -78,14 +58,55 @@ public class GymProj {
                             sc.nextInt();
                         }
                 }
-                
                 case 3 -> info();
-                
                 case 4 -> mensageLeave();
-                
             }
             
         }while(wantTo!=4);
+        
+    }
+    
+    public static void register(int na){
+    
+        Register register[] = new Register[na+1];
+        register[na] = new Register(na);
+        
+        String name;
+        int yearBorn;
+        float cpf;
+        
+        //setting information of user
+        System.out.print("Tell me what's your name: ");
+        name=sc.nextLine();
+        System.out.print("Year you've born: ");
+        yearBorn = sc.nextInt();
+        System.out.print("Type your cpf (just numbers): ");
+        cpf = sc.nextFloat();
+        register[na].registerPainel(name, yearBorn, cpf);
+        sc.nextLine();
+        //verivication of the cpf is real, because if it isn't the user cannot create a perfil
+            if (register[na].isCpfAllowed()){
+                System.out.println("\nYou'll be redirected to create your perfil\n[]- Ok;");
+                sc.nextLine();
+                
+                System.out.print("Type here your height: ");
+                register[na].setHeightUser(sc.nextFloat());
+                System.out.print("Type here your weight: ");
+                register[na].setWeightUser(sc.nextFloat());
+                register[na].setPerfilUser();
+                
+                sc.nextLine();
+
+                System.out.print("Now you need to create your password to the nick: "+ register[na].getNicknameUser()+"\nPassword: ");
+                register[na].setPasswordUser(sc.nextLine());
+                System.out.println("Your password is: "+ register[na].getPasswordUser() +"\n[]- Ok;");
+                sc.nextLine();
+                numberAccountRegister++;
+                
+                        System.out.println( register[na].toString());
+
+            }else
+                System.out.println("=="+ register[na].stopPerfilCreation() +"==");
         
     }
     
