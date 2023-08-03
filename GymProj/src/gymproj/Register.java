@@ -84,13 +84,7 @@ public class Register{
     }
     
     protected void setPerfilUser(){
-        
-        System.out.print("type here your weight: ");
-        setWeightUser(sc.nextFloat());
-        
-        System.out.print("Type here your height: ");
-        setHeightUser(sc.nextFloat());
-        
+                
         setImc(getWeightUser(), getHeighUser());
         
         if(getImc() < 18.5){
@@ -148,7 +142,7 @@ public class Register{
         return this.weightUser;
     }
 
-    protected void setWeightUser(float weig) {
+    public void setWeightUser(float weig) {
         this.weightUser = weig;
     }
 
@@ -156,7 +150,7 @@ public class Register{
         return this.heightUser;
     }
     
-    protected void setHeightUser(float heig) {
+    public void setHeightUser(float heig) {
         this.heightUser = heig;
     }
     

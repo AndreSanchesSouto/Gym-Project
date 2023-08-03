@@ -45,6 +45,13 @@ public class GymProj {
                     Register register[] = new Register[numberAccountRegister+1];
                     register[numberAccountRegister] = new Register(numberAccountRegister);
                     register[numberAccountRegister].registerPainel();
+                    
+                    System.out.print("type here your weight: ");
+                    register[numberAccountRegister].setWeightUser(sc.nextFloat());
+
+                    System.out.print("Type here your height: ");
+                    register[numberAccountRegister].setHeightUser(sc.nextFloat());
+
                     if(register[numberAccountRegister].isCpfAllowed()){
                         
                         registredUsers[numberAccountRegister] = register[numberAccountRegister];
