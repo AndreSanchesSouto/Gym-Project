@@ -41,23 +41,8 @@ public class GymProj {
             sc.nextLine();
 
             switch(wantTo){
-
                 case 1 -> register(numberAccountRegister);
-                case 2 -> {
-                    int numbReg;
-                    
-                    System.out.print("Whitch is your Register's Number: "+numberAccountRegister);
-                    numbReg=sc.nextInt()-1;
-                    System.out.println(numberAccountRegister+" "+numbReg);
-                        if(numberAccountRegister>0 && numbReg<=numberAccountRegister){
-                            Loggin loggin[] = new Loggin[numberAccountRegister];
-                            loggin[numbReg] = new Loggin(numbReg);
-
-                        }else{
-                            System.out.println("This number doesn't exit as an registered one. Please, try again\n[0]- Ok;");
-                            sc.nextInt();
-                        }
-                }
+                case 2 -> loggin(numberAccountRegister);
                 case 3 -> info();
                 case 4 -> mensageLeave();
             }
@@ -108,6 +93,23 @@ public class GymProj {
 
             }else
                 System.out.println("=="+ register[na].stopPerfilCreation() +"==");   
+    }
+    
+    public static void loggin(int na){
+        
+        int numbReg;
+                    
+                    System.out.print("Whitch is your Register's Number: "+numberAccountRegister);
+                    numbReg=sc.nextInt()-1;
+                    System.out.println(numberAccountRegister+" "+numbReg);
+                        if(numberAccountRegister>0 && numbReg<=numberAccountRegister){
+                            Loggin loggin[] = new Loggin[numberAccountRegister];
+                            loggin[numbReg] = new Loggin(numbReg);
+
+                        }else{
+                            System.out.println("This number doesn't exit as an registered one. Please, try again\n[0]- Ok;");
+                            sc.nextInt();
+                        }
     }
     
     public static void mensageLeave(){
