@@ -84,6 +84,7 @@ public class GymProj {
         cpf = sc.nextFloat();
         register[na].registerPainel(name, yearBorn, cpf);
         sc.nextLine();
+        
         //verivication of the cpf is real, because if it isn't the user cannot create a perfil
             if (register[na].isCpfAllowed()){
                 System.out.println("\nYou'll be redirected to create your perfil\n[]- Ok;");
@@ -104,15 +105,9 @@ public class GymProj {
                 
                 registredUsers[na] = register[na];
                 numberAccountRegister++;
-                
-                        if(na==1){
-                        System.out.println( registredUsers[na].toString());
-                                                System.out.println( registredUsers[na-1].toString());
-                        }
 
             }else
-                System.out.println("=="+ register[na].stopPerfilCreation() +"==");
-        
+                System.out.println("=="+ register[na].stopPerfilCreation() +"==");   
     }
     
     public static void mensageLeave(){
