@@ -12,8 +12,9 @@ package gymproj;
 public class Register{
     
     private String nameUser, passwordUser, nicknameUser, perfilUser;
-    private int yearBornUser, na;
-    private float cpfUser, weightUser, heightUser, imcUser;
+    private int yearBornUser;
+    private final int na;
+    private float cpfUser, weightUser, heighUser, imcUser;
     private boolean cpfAllowed;
 
     public Register(int numbAccount){
@@ -22,26 +23,26 @@ public class Register{
         this.nicknameUser=""; 
         this.perfilUser = "";
         this.yearBornUser = 0;
-        this.na = ++numbAccount;
+        this.na = numbAccount;
         this.cpfUser = 0;
         this.weightUser = 0; 
-        this.heightUser = 0;
+        this.heighUser = 0;
         this.imcUser = 0;
         this.cpfAllowed = false;
     }
     
     public void registerPainel(String name, int year, float cpf){
        
-        setNameUser(name);
-        setYearBornUser(year);
-        setCpfUser(cpf);
+        this.setNameUser(name);
+        this.setYearBornUser(year);
+        this.setCpfUser(cpf);
         
     }
     
     public String createPassword(String pass){
         
-        setPasswordUser(pass);
-        return getPasswordUser();
+        this.setPasswordUser(pass);
+        return this.getPasswordUser();
         
     }
     
@@ -66,35 +67,35 @@ public class Register{
     }
     
     public String getNicknameUser(){
-        setNicknameUser();
+        this.setNicknameUser(this.getNameUser());
         return this.nicknameUser;
     }
     
-    private void setNicknameUser(){
-        this.nicknameUser = getNameUser() + getPerfilUser() +"_"+ na;
+    protected void setNicknameUser(String name){
+        this.nicknameUser = name + this.getPerfilUser() +"_"+ na;
     }
     
     public void setPerfilUser(){
                 
-        setImc(getWeightUser(), getHeighUser());
+        this.setImcUser(this.getWeightUser(), this.getHeighUser());
         
-        if(getImc() < 18.5){
-            setPerfilUser("Magreza");
+        if(this.getImcUser() < 18.5){
+            this.setPerfilUser("Magreza");
             
-        }else if(getImc() < 24.9){
-            setPerfilUser("Adequado");
+        }else if(this.getImcUser() < 24.9){
+            this.setPerfilUser("Adequado");
         
-        }else if(getImc() < 29.9){
+        }else if(this.getImcUser() < 29.9){
             setPerfilUser("Sobrepeso");
 
-        }else if(getImc() < 34.9){
-            setPerfilUser("Obesidade grau I");
+        }else if(this.getImcUser() < 34.9){
+            this.setPerfilUser("Obesidade grau I");
         
-        }else if(getImc() < 39.9){
-            setPerfilUser("Obesidade grau II");
+        }else if(this.getImcUser() < 39.9){
+            this.setPerfilUser("Obesidade grau II");
             
         }else{
-            setPerfilUser("Obesidade grau III");
+            this.setPerfilUser("Obesidade grau III");
         
         }
         
@@ -113,11 +114,11 @@ public class Register{
     }
     
     protected void setCpfUser(float cpf){
-        if(isCpfAllowed()){
+        if(this.isCpfAllowed()){
             this.cpfUser = cpf;
             
         }else
-            stopPerfilCreation();  
+            this.stopPerfilCreation();  
         
     }
     
@@ -138,43 +139,43 @@ public class Register{
     }
 
     public float getHeighUser() {
-        return this.heightUser;
+        return this.heighUser;
     }
     
     public void setHeightUser(float heig) {
-        this.heightUser = heig;
+        this.heighUser = heig;
     }
     
-    public float getImc(){
+    public float getImcUser(){
         return this.imcUser;
     }
     
-    private void setImc(float wei, float hei){
+    protected void setImcUser(float wei, float hei){
         this.imcUser = wei/(hei*hei);
         
     }
     
     public boolean isCpfAllowed(){
-        setCpfAllowed();
+        this.setCpfAllowed();
         return this.cpfAllowed;
     }
     
-    private void setCpfAllowed(){
-        this.cpfAllowed = isCpfExist(getCpfUser()) && !isCpfLogged(getCpfUser());
+    protected void setCpfAllowed(){
+        this.cpfAllowed = this.isCpfExist(this.getCpfUser()) && !this.isCpfLogged(this.getCpfUser());
        
     }
     
-    private boolean isCpfExist(float cpf){
+    protected boolean isCpfExist(float cpf){
         return true;
     }
     
-    private boolean isCpfLogged(float cpf){
+    protected boolean isCpfLogged(float cpf){
         return false;
     }
 
     @Override
     public String toString() {
-        return "Register{" + "nameUser=" + nameUser + ", passwordUser=" + passwordUser + ", nicknameUser=" + nicknameUser + ", perfilUser=" + perfilUser + ", yearBornUser=" + yearBornUser + ", cpfUser=" + cpfUser + ", weightUser=" + weightUser + ", heightUser=" + heightUser + ", imcUser=" + imcUser + ", cpfAllowed=" + cpfAllowed + '}';
+        return "Register{" + "nameUser=" + nameUser + ", passwordUser=" + passwordUser + ", nicknameUser=" + nicknameUser + ", perfilUser=" + perfilUser + ", yearBornUser=" + yearBornUser + ", cpfUser=" + cpfUser + ", weightUser=" + weightUser + ", heightUser=" + heighUser + ", imcUser=" + imcUser + ", cpfAllowed=" + cpfAllowed + '}';
     }
     
     

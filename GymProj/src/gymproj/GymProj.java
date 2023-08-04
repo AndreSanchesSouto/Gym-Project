@@ -18,9 +18,10 @@ public class GymProj {
      */
     
     static Scanner sc = new Scanner(System.in);
+    
     static Register registredUsers[] = new Register[100];
     
-    public static int numberAccountRegister=0;
+    public static int numberAccountRegister = 0;
             
     public static void main(String[] args) {
   
@@ -53,8 +54,7 @@ public class GymProj {
     
     public static void register(int na){
     
-        Register register[] = new Register[na+1];
-        register[na] = new Register(na);
+        registredUsers[na] = new Register(na);
         
         String name;
         int yearBorn;
@@ -67,49 +67,71 @@ public class GymProj {
         yearBorn = sc.nextInt();
         System.out.print("Type your cpf (just numbers): ");
         cpf = sc.nextFloat();
-        register[na].registerPainel(name, yearBorn, cpf);
+        registredUsers[na].registerPainel(name, yearBorn, cpf);
         sc.nextLine();
         
         //verivication of the cpf is real, because if it isn't the user cannot create a perfil
-            if (register[na].isCpfAllowed()){
+            if (registredUsers[na].isCpfAllowed()){
                 System.out.println("\nYou'll be redirected to create your perfil\n[]- Ok;");
                 sc.nextLine();
                 
                 System.out.print("Type here your height: ");
-                register[na].setHeightUser(sc.nextFloat());
+                registredUsers[na].setHeightUser(sc.nextFloat());
                 System.out.print("Type here your weight: ");
-                register[na].setWeightUser(sc.nextFloat());
-                register[na].setPerfilUser();
+                registredUsers[na].setWeightUser(sc.nextFloat());
+                registredUsers[na].setPerfilUser();
                 
                 sc.nextLine();
 
-                System.out.print("Now you need to create your password to the nick: "+ register[na].getNicknameUser()+"\nPassword: ");
-                register[na].setPasswordUser(sc.nextLine());
-                System.out.println("Your password is: "+ register[na].getPasswordUser() +"\n[]- Ok;");
+                System.out.print("Now you need to create your password to the nick: "+ registredUsers[na].getNicknameUser()+"\nPassword: ");
+                registredUsers[na].setPasswordUser(sc.nextLine());
+                System.out.println("Your password is: "+ registredUsers[na].getPasswordUser() +"\n[]- Ok;");
                 sc.nextLine();
                 
-                registredUsers[na] = register[na];
                 numberAccountRegister++;
 
             }else
-                System.out.println("=="+ register[na].stopPerfilCreation() +"==");   
+                System.out.println("=="+ registredUsers[na].stopPerfilCreation() +"==");   
     }
     
     public static void loggin(int na){
         
-        int numbReg;
+        String nick, pass;
+        int numbReg, tries;
                     
-                    System.out.print("Whitch is your Register's Number: "+numberAccountRegister);
-                    numbReg=sc.nextInt()-1;
-                    System.out.println(numberAccountRegister+" "+numbReg);
-                        if(numberAccountRegister>0 && numbReg<=numberAccountRegister){
-                            Loggin loggin[] = new Loggin[numberAccountRegister];
-                            loggin[numbReg] = new Loggin(numbReg);
+        System.out.print("Type your Register's Number: <"+ na);
+        numbReg = sc.nextInt();
+        sc.nextLine();
 
-                        }else{
-                            System.out.println("This number doesn't exit as an registered one. Please, try again\n[0]- Ok;");
-                            sc.nextInt();
-                        }
+            if(numbReg<na && numbReg>-1){
+                
+                Loggin loggedUsers = new Loggin(numbReg, 
+                                                registredUsers[numbReg].getNameUser(),
+                                                registredUsers[numbReg].getPasswordUser(), 
+                                                registredUsers[numbReg].getNicknameUser(),
+                                                registredUsers[numbReg].getPerfilUser(),
+                                                registredUsers[numbReg].getYearBornUser(),
+                                                registredUsers[numbReg].getCpfUser(),
+                                                registredUsers[numbReg].getWeightUser(),
+                                                registredUsers[numbReg].getHeighUser(),
+                                                registredUsers[numbReg].getImcUser(),
+                                                registredUsers[numbReg].isCpfAllowed());
+                tries = 4;
+                do{
+                    if(tries<4)System.out.println("Nickname or password are wrong. You have "+ tries +" tries before being temporalu blocked...");
+                        System.out.print("Type the nickname: ");
+                        nick = sc.nextLine();
+                        System.out.print("Password: ");
+                        pass = sc.nextLine();
+
+                        System.out.println(loggedUsers.confirmIdentity(nick, pass));
+                    tries--;
+                }while(!loggedUsers.confirmIdentity(nick, pass));
+              
+            }else{
+                System.out.println("This number doesn't exit as an registered one. Please, try again\n[0]- Ok;");
+                sc.nextInt();
+            }
     }
     
     public static void mensageLeave(){
