@@ -60,7 +60,7 @@ public class GymProj {
         int yearBorn;
         float cpf;
         
-        //setting information of user
+        //Codigo para as informações do usuario
         System.out.print("Tell me what's your name: ");
         name=sc.nextLine();
         System.out.print("Year you've born: ");
@@ -70,8 +70,8 @@ public class GymProj {
         registredUsers[na].registerPainel(name, yearBorn, cpf);
         sc.nextLine();
         
-        //verivication of the cpf is real, because if it isn't the user cannot create a perfil
-            if (registredUsers[na].isCpfAllowed()){
+        //verifica se os dados do usuario são válidos (cpf) levado em conta, se aprovado ele pode cirar o perfil, se não.. não
+        if (registredUsers[na].isCpfAllowed()){
                 System.out.println("\nYou'll be redirected to create your perfil\n[]- Ok;");
                 sc.nextLine();
                 
@@ -105,6 +105,8 @@ public class GymProj {
 
             if(numbReg<na && numbReg>-1){
                 
+                //definindo os valores do loggin como os mesmos do que foi registrado
+                
                 Loggin loggedUsers = new Loggin(numbReg, 
                                                 registredUsers[numbReg].getNameUser(),
                                                 registredUsers[numbReg].getPasswordUser(), 
@@ -116,16 +118,23 @@ public class GymProj {
                                                 registredUsers[numbReg].getHeighUser(),
                                                 registredUsers[numbReg].getImcUser(),
                                                 registredUsers[numbReg].isCpfAllowed());
+                
+                //confirmação da identidaed do usuario com a senha e nick do perfil
                 tries = 4;
                 do{
-                    if(tries<4)System.out.println("Nickname or password are wrong. You have "+ tries +" tries before being temporalu blocked...");
-                        System.out.print("Type the nickname: ");
-                        nick = sc.nextLine();
-                        System.out.print("Password: ");
-                        pass = sc.nextLine();
+                    if(tries<1){
+                        System.out.println("The perfil with register's number ["+ numbReg +"] is blocked.");
+                        break;
+                        
+                    }else if(tries<4)
+                            System.out.println("Nickname or password are wrong. You have "+ tries +" tries before being temporality blocked...");
 
-                        System.out.println(loggedUsers.confirmIdentity(nick, pass));
+                    System.out.print("Type the nickname: ");
+                    nick = sc.nextLine();
+                    System.out.print("Password: ");
+                    pass = sc.nextLine();
                     tries--;
+                    
                 }while(!loggedUsers.confirmIdentity(nick, pass));
               
             }else{

@@ -34,9 +34,6 @@ public class Loggin extends Register{
     }
     
     public boolean confirmIdentity(String nick, String pass){
-        
-        System.out.println(this.toString());
-        System.out.println("");
         return this.getNicknameUser().equals(nick) && this.getPasswordUser().equals(pass);
     }
     
