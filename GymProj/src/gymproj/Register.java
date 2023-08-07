@@ -41,8 +41,8 @@ public class Register{
     
     public String createPassword(String pass){
         
-        this.setPasswordUser(pass);
-        return this.getPasswordUser();
+        setPasswordUser(pass);
+        return getPasswordUser();
         
     }
     
@@ -67,35 +67,35 @@ public class Register{
     }
     
     public String getNicknameUser(){
-        this.setNicknameUser(this.getNameUser());
+        this.setNicknameUser(getNameUser());
         return this.nicknameUser;
     }
     
     protected void setNicknameUser(String name){
-        this.nicknameUser = name + this.getPerfilUser() +"_"+ na;
+        this.nicknameUser = name + getPerfilUser() +"_"+ na;
     }
     
     public void setPerfilUser(){
                 
-        this.setImcUser(this.getWeightUser(), this.getHeighUser());
+        setImcUser(getWeightUser(), getHeighUser());
         
-        if(this.getImcUser() < 18.5){
-            this.setPerfilUser("Magreza");
+        if(getImcUser() < 18.5){
+            setPerfilUser("Magreza");
             
-        }else if(this.getImcUser() < 24.9){
-            this.setPerfilUser("Adequado");
+        }else if(getImcUser() < 24.9){
+            setPerfilUser("Adequado");
         
-        }else if(this.getImcUser() < 29.9){
+        }else if(getImcUser() < 29.9){
             setPerfilUser("Sobrepeso");
 
-        }else if(this.getImcUser() < 34.9){
-            this.setPerfilUser("Obesidade grau I");
+        }else if(getImcUser() < 34.9){
+            setPerfilUser("Obesidade grau I");
         
-        }else if(this.getImcUser() < 39.9){
-            this.setPerfilUser("Obesidade grau II");
+        }else if(getImcUser() < 39.9){
+           setPerfilUser("Obesidade grau II");
             
         }else{
-            this.setPerfilUser("Obesidade grau III");
+            setPerfilUser("Obesidade grau III");
         
         }
         
@@ -114,11 +114,11 @@ public class Register{
     }
     
     protected void setCpfUser(float cpf){
-        if(this.isCpfAllowed()){
-            this.cpfUser = cpf;
+        if(isCpfAllowed()){
+            cpfUser = cpf;
             
         }else
-            this.stopPerfilCreation();  
+            stopPerfilCreation();  
         
     }
     
@@ -156,12 +156,12 @@ public class Register{
     }
     
     public boolean isCpfAllowed(){
-        this.setCpfAllowed();
+        setCpfAllowed();
         return this.cpfAllowed;
     }
     
     protected void setCpfAllowed(){
-        this.cpfAllowed = this.isCpfExist(this.getCpfUser()) && !this.isCpfLogged(this.getCpfUser());
+        this.cpfAllowed = isCpfExist(getCpfUser()) && !isCpfLogged(getCpfUser());
        
     }
     

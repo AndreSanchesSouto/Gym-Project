@@ -34,7 +34,7 @@ public class Loggin extends Register{
     }
     
     public boolean confirmIdentity(String nick, String pass){
-        return this.getNicknameUser().equals(nick) && this.getPasswordUser().equals(pass);
+        return getNicknameUser().equals(nick) && getPasswordUser().equals(pass);
     }
     
     @Override
@@ -59,37 +59,37 @@ public class Loggin extends Register{
     
     @Override
     public String getNicknameUser(){
-        this.setNicknameUser(this.getNameUser());
+        setNicknameUser(getNameUser());
         return this.nicknameUser;
     }
     
     @Override
     public void setNicknameUser(String name){
-        this.nicknameUser = name + this.getPerfilUser() +"_"+ numbAccount;
+        this.nicknameUser = name + getPerfilUser() +"_"+ numbAccount;
     }
     
     @Override
     public void setPerfilUser(){
                 
-        this.setImcUser(this.getWeightUser(), this.getHeighUser());
+       setImcUser(getWeightUser(), getHeighUser());
         
-        if(this.getImcUser() < 18.5){
-            this.setPerfilUser("Magreza");
+        if(getImcUser() < 18.5){
+            setPerfilUser("Magreza");
             
-        }else if(this.getImcUser() < 24.9){
-            this.setPerfilUser("Adequado");
+        }else if(getImcUser() < 24.9){
+            setPerfilUser("Adequado");
         
-        }else if(this.getImcUser() < 29.9){
+        }else if(getImcUser() < 29.9){
             setPerfilUser("Sobrepeso");
 
-        }else if(this.getImcUser() < 34.9){
-            this.setPerfilUser("Obesidade grau I");
+        }else if(getImcUser() < 34.9){
+            setPerfilUser("Obesidade grau I");
         
-        }else if(this.getImcUser() < 39.9){
-            this.setPerfilUser("Obesidade grau II");
+        }else if(getImcUser() < 39.9){
+            setPerfilUser("Obesidade grau II");
             
         }else{
-            this.setPerfilUser("Obesidade grau III");
+            setPerfilUser("Obesidade grau III");
         
         }
         
@@ -112,11 +112,11 @@ public class Loggin extends Register{
     
     @Override
     protected void setCpfUser(float cpf){
-        if(this.isCpfAllowed()){
+        if(isCpfAllowed()){
             this.cpfUser = cpf;
             
         }else
-            this.stopPerfilCreation();  
+            stopPerfilCreation();  
         
     }
     
@@ -163,13 +163,13 @@ public class Loggin extends Register{
     
     @Override
     public boolean isCpfAllowed(){
-        this.setCpfAllowed();
+        setCpfAllowed();
         return this.cpfAllowed;
     }
     
     @Override
     protected void setCpfAllowed(){
-        this.cpfAllowed = this.isCpfExist(this.getCpfUser()) && !this.isCpfLogged(this.getCpfUser());
+        this.cpfAllowed = isCpfExist(getCpfUser()) && !isCpfLogged(getCpfUser());
        
     }
     
@@ -190,4 +190,3 @@ public class Loggin extends Register{
   
 }
             
-

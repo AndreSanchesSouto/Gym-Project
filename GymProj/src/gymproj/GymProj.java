@@ -89,6 +89,8 @@ public class GymProj {
                 sc.nextLine();
                 
                 numberAccountRegister++;
+                
+                System.out.println("=="+registredUsers[na].toString()+"==");
 
             }else
                 System.out.println("=="+ registredUsers[na].stopPerfilCreation() +"==");   
@@ -107,7 +109,7 @@ public class GymProj {
                 
                 //definindo os valores do loggin como os mesmos do que foi registrado
                 
-                Loggin loggedUsers = new Loggin(numbReg, 
+                Loggin loggedUser = new Loggin(numbReg,
                                                 registredUsers[numbReg].getNameUser(),
                                                 registredUsers[numbReg].getPasswordUser(), 
                                                 registredUsers[numbReg].getNicknameUser(),
@@ -135,7 +137,11 @@ public class GymProj {
                     pass = sc.nextLine();
                     tries--;
                     
-                }while(!loggedUsers.confirmIdentity(nick, pass));
+                }while(!loggedUser.confirmIdentity(nick, pass));
+                
+                if(tries>0){
+                    System.out.println("-- You're inside of BG-System --\nWelcome, "+loggedUser.getNameUser());
+                }
               
             }else{
                 System.out.println("This number doesn't exit as an registered one. Please, try again\n[0]- Ok;");
