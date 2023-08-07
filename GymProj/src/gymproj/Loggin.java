@@ -11,7 +11,7 @@ package gymproj;
 
 public class Loggin extends Register {
     
-    private  int numbAccount;
+    private final int numbAccount;
     private String nameUser,  passwordUser,  nicknameUser, perfilUser;
     private int yearBornUser;
     private float cpfUser,  weightUser,  heighUser,  imcUser;
@@ -24,7 +24,7 @@ public class Loggin extends Register {
         this.passwordUser = regist.getPasswordUser();  
         this.nicknameUser = regist.getNicknameUser(); 
         this.perfilUser = regist.getPerfilUser();
-        this.yearBornUser = regist.getYearBornUser();
+        this.yearBornUser = regist.getYearBirthUser();
         this.cpfUser = regist.getCpfUser();  
         this.weightUser = regist.getWeightUser();  
         this.heighUser = regist.getHeighUser();  
@@ -33,9 +33,19 @@ public class Loggin extends Register {
     }
     
     public boolean confirmIdentity(String nick, String pass) {
-        return this.nicknameUser.equals(nick) && this.passwordUser.equals(pass);
+        return getNicknameUser().equals(nick) && getPasswordUser().equals(pass);
     }
-
+    
+    @Override
+    public String getNicknameUser(){
+        return this.nicknameUser;
+    }
+    
+    @Override
+    public String getPasswordUser(){
+        return this.passwordUser;
+    }
+    
     @Override
     public String toString() {
         return "Register{" + "nameUser=" + nameUser + ", passwordUser=" + passwordUser + ", nicknameUser=" + nicknameUser + ", perfilUser=" + perfilUser + ", yearBornUser=" + yearBornUser + ", cpfUser=" + cpfUser + ", weightUser=" + weightUser + ", heightUser=" + heighUser + ", imcUser=" + imcUser + ", cpfAllowed=" + cpfAllowed + '}';

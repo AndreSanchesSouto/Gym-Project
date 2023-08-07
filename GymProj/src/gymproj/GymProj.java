@@ -56,17 +56,16 @@ public class GymProj {
     
         registredUsers[na] = new Register(na);
         
-        String name;
-        int yearBorn;
-        float cpf;
+        String name, yearBorn;
+        long cpf;
         
         //Codigo para as informações do usuario
         System.out.print("Tell me what's your name: ");
-        name=sc.nextLine();
-        System.out.print("Year you've born: ");
-        yearBorn = sc.nextInt();
+        name = sc.nextLine();
+        System.out.print("Your birth day (yyyy-mm-dd): ");
+        yearBorn = sc.nextLine();
         System.out.print("Type your cpf (just numbers): ");
-        cpf = sc.nextFloat();
+        cpf = sc.nextLong();
         registredUsers[na].registerPainel(name, yearBorn, cpf);
         sc.nextLine();
         
@@ -99,7 +98,7 @@ public class GymProj {
     public static void loggin(int na){
         
         String nick, pass;
-        int numbReg, tries;
+        int numbReg, tries, choise;
                     
         System.out.print("Type your Register's Number: <"+ na);
         numbReg = sc.nextInt();
@@ -119,7 +118,7 @@ public class GymProj {
                         break;
                         
                     }else if(tries<4)
-                            System.out.println("Nickname or password are wrong. You have "+ tries +" tries before being temporality blocked...");
+                        System.out.println("Nickname or password are wrong. You have "+ tries +" tries before being temporality blocked...");
 
                     System.out.print("Type the nickname: ");
                     nick = sc.nextLine();
@@ -131,6 +130,18 @@ public class GymProj {
                 
                 if(tries>0){
                     System.out.println("-- You're inside of BG-System --\nWelcome, "+ registredUsers[numbReg].getNameUser());
+                    System.out.println("You want to:\n[1]- Cowork;\n[2]- Study;\n[3]- Back;");
+                    choise = sc.nextInt();
+                    
+                    switch(choise){
+                        case 1 -> coworking(); 
+                        case 2 -> studying();
+                        default -> {
+                            System.out.println("Returning...\n[]- Ok;");
+                            sc.nextLine();
+                        }
+                    }
+                    
                 }
               
             }else{
@@ -138,6 +149,15 @@ public class GymProj {
                 sc.nextInt();
             }
     }
+ 
+    public static void coworking(){
+    
+    }
+
+    public static void studying(){
+        
+    }
+        
     
     public static void mensageLeave(){
         System.out.println("Leaving...");

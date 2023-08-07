@@ -4,6 +4,8 @@
  */
 package gymproj;
 
+import java.util.Calendar;
+
 /**
  *
  * @author andre
@@ -11,10 +13,13 @@ package gymproj;
 
 public class Register{
     
+    Calendar cal = Calendar.getInstance();
+    
     private String nameUser, passwordUser, nicknameUser, perfilUser;
-    private int yearBornUser;
+    private int yearBirthUser;
     private final int na;
-    private float cpfUser, weightUser, heighUser, imcUser;
+    private float weightUser, heighUser, imcUser;
+    private long cpfUser;
     private boolean cpfAllowed;
 
     public Register(int numbAccount){
@@ -22,21 +27,19 @@ public class Register{
         this.passwordUser = ""; 
         this.nicknameUser=""; 
         this.perfilUser = "";
-        this.yearBornUser = 0;
+        this.yearBirthUser = 0;
         this.na = numbAccount;
-        this.cpfUser = 0f;
+        this.cpfUser = 0;
         this.weightUser = 0f; 
         this.heighUser = 0f;
         this.imcUser = 0f;
         this.cpfAllowed = false;
     }
     
-    public void registerPainel(String name, int year, float cpf){
-       
+    public void registerPainel(String name, String year, long cpf){
         this.setNameUser(name);
-        this.setYearBornUser(year);
+        this.setYearBirthUser(year);
         this.setCpfUser(cpf);
-        
     }
     
     public String createPassword(String pass){
@@ -101,19 +104,45 @@ public class Register{
         
     }
     
-    public int getYearBornUser(){
-        return this.yearBornUser;
+    public int getYearBirthUser(){
+        return this.yearBirthUser;
     }
 
-    public void setYearBornUser(int year){
-        this.yearBornUser = year;
+    public void setYearBirthUser(String year){
+        int y = Integer.parseInt(year);
+        this.yearBirthUser = y;
     }
     
     public float getCpfUser(){
         return this.cpfUser;
     }
     
-    protected void setCpfUser(float cpf){
+    protected void setCpfUser(long cpf){
+        
+        long alg[] = new long[11];
+        int res=0, res2=0, finish, finish2;
+        short verif=10, verif2=11;
+        
+        for(short n=10; n>=0; n--){
+            alg[n]=cpf%10;
+            cpf/=10;
+        }
+        for(short n=0; n<11; n++){
+            if(n<9){
+                res+=alg[n]*verif;
+                verif--;
+            }
+            if(n<10){
+                res2+=alg[n]*verif2;
+                verif2--;
+            }
+        }
+        
+        finish = res*10%11;
+        finish2 = res2*10%11;
+        
+        System.out.println(finish +" "+ finish2);
+        
         if(isCpfAllowed()){
             cpfUser = cpf;
             
@@ -175,7 +204,7 @@ public class Register{
 
     @Override
     public String toString() {
-        return "Register{" + "nameUser=" + nameUser + ", passwordUser=" + passwordUser + ", nicknameUser=" + nicknameUser + ", perfilUser=" + perfilUser + ", yearBornUser=" + yearBornUser + ", cpfUser=" + cpfUser + ", weightUser=" + weightUser + ", heightUser=" + heighUser + ", imcUser=" + imcUser + ", cpfAllowed=" + cpfAllowed + '}';
+        return "Register{" + "nameUser=" + nameUser + ", passwordUser=" + passwordUser + ", nicknameUser=" + nicknameUser + ", perfilUser=" + perfilUser + ", yearBornUser=" + yearBirthUser + ", cpfUser=" + cpfUser + ", weightUser=" + weightUser + ", heightUser=" + heighUser + ", imcUser=" + imcUser + ", cpfAllowed=" + cpfAllowed + '}';
     }
     
     
