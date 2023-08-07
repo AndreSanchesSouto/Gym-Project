@@ -9,178 +9,31 @@ package gymproj;
  * @author andre
  */ 
 
-public class Loggin extends Register{
+public class Loggin extends Register {
     
-    int numbAccount;
-    String nameUser,  passwordUser,  nicknameUser, perfilUser;
-    int yearBornUser;
-    float cpfUser,  weightUser,  heighUser,  imcUser;
-    boolean cpfAllowed;
+    private  int numbAccount;
+    private String nameUser,  passwordUser,  nicknameUser, perfilUser;
+    private int yearBornUser;
+    private float cpfUser,  weightUser,  heighUser,  imcUser;
+    private boolean cpfAllowed;
     
-    public Loggin(  int na, String name, String password, String nickname,String perfil, 
-                    int year, float cpf, float weight, float heigh, float imc, boolean cpfAll) {
+    public Loggin(int na, Register regist) {
         super(na);
-        this.numbAccount = na;
-        this.nameUser = name;  
-        this.passwordUser = password;  
-        this.nicknameUser = nickname; 
-        this.perfilUser = perfil;
-        this.yearBornUser = year;
-        this.cpfUser = cpf;  
-        this.weightUser = weight;  
-        this.heighUser = heigh;  
-        this.imcUser = imc;
-        this.cpfAllowed = cpfAll;
+        this.numbAccount = na;       
+        this.nameUser = regist.getNameUser();  
+        this.passwordUser = regist.getPasswordUser();  
+        this.nicknameUser = regist.getNicknameUser(); 
+        this.perfilUser = regist.getPerfilUser();
+        this.yearBornUser = regist.getYearBornUser();
+        this.cpfUser = regist.getCpfUser();  
+        this.weightUser = regist.getWeightUser();  
+        this.heighUser = regist.getHeighUser();  
+        this.imcUser = regist.getImcUser();
+        this.cpfAllowed = regist.isCpfAllowed();
     }
     
-    public boolean confirmIdentity(String nick, String pass){
-        return getNicknameUser().equals(nick) && getPasswordUser().equals(pass);
-    }
-    
-    @Override
-    public String getNameUser(){
-        return this.nameUser;
-    }
-    
-    @Override
-    public void setNameUser(String name){
-        this.nameUser = name;
-    }
-    
-    @Override
-    protected String getPasswordUser(){
-        return this.passwordUser;
-    }
-    
-    @Override
-    protected void setPasswordUser(String password){
-        this.passwordUser = password;
-    }
-    
-    @Override
-    public String getNicknameUser(){
-        setNicknameUser(getNameUser());
-        return this.nicknameUser;
-    }
-    
-    @Override
-    public void setNicknameUser(String name){
-        this.nicknameUser = name + getPerfilUser() +"_"+ numbAccount;
-    }
-    
-    @Override
-    public void setPerfilUser(){
-                
-       setImcUser(getWeightUser(), getHeighUser());
-        
-        if(getImcUser() < 18.5){
-            setPerfilUser("Magreza");
-            
-        }else if(getImcUser() < 24.9){
-            setPerfilUser("Adequado");
-        
-        }else if(getImcUser() < 29.9){
-            setPerfilUser("Sobrepeso");
-
-        }else if(getImcUser() < 34.9){
-            setPerfilUser("Obesidade grau I");
-        
-        }else if(getImcUser() < 39.9){
-            setPerfilUser("Obesidade grau II");
-            
-        }else{
-            setPerfilUser("Obesidade grau III");
-        
-        }
-        
-    }
-    
-    @Override
-    public int getYearBornUser(){
-        return this.yearBornUser;
-    }
-    
-    @Override
-    public void setYearBornUser(int year){
-        this.yearBornUser = year;
-    }
-    
-    @Override
-    public float getCpfUser(){
-        return this.cpfUser;
-    }
-    
-    @Override
-    protected void setCpfUser(float cpf){
-        if(isCpfAllowed()){
-            this.cpfUser = cpf;
-            
-        }else
-            stopPerfilCreation();  
-        
-    }
-    
-    @Override
-    public String getPerfilUser(){
-        return this.perfilUser;
-    }
-    
-    @Override
-    protected void setPerfilUser(String perfil){
-        this.perfilUser = perfil;
-    }
-    
-    @Override
-    public float getWeightUser() {
-        return this.weightUser;
-    }
-    
-    @Override
-    public void setWeightUser(float weig) {
-        this.weightUser = weig;
-    }
-    
-    @Override
-    public float getHeighUser() {
-        return this.heighUser;
-    }
-    
-    @Override
-    public void setHeightUser(float heig) {
-        this.heighUser = heig;
-    }
-    
-    @Override
-    public float getImcUser(){
-        return this.imcUser;
-    }
-    
-    @Override
-    protected void setImcUser(float wei, float hei){
-        this.imcUser = wei/(hei*hei);
-        
-    }
-    
-    @Override
-    public boolean isCpfAllowed(){
-        setCpfAllowed();
-        return this.cpfAllowed;
-    }
-    
-    @Override
-    protected void setCpfAllowed(){
-        this.cpfAllowed = isCpfExist(getCpfUser()) && !isCpfLogged(getCpfUser());
-       
-    }
-    
-    @Override
-    protected boolean isCpfExist(float cpf){
-        return true;
-    }
-    
-    @Override
-    protected boolean isCpfLogged(float cpf){
-        return false;
+    public boolean confirmIdentity(String nick, String pass) {
+        return this.nicknameUser.equals(nick) && this.passwordUser.equals(pass);
     }
 
     @Override

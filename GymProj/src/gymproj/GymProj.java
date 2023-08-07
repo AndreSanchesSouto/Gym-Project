@@ -109,17 +109,7 @@ public class GymProj {
                 
                 //definindo os valores do loggin como os mesmos do que foi registrado
                 
-                Loggin loggedUser = new Loggin(numbReg,
-                                                registredUsers[numbReg].getNameUser(),
-                                                registredUsers[numbReg].getPasswordUser(), 
-                                                registredUsers[numbReg].getNicknameUser(),
-                                                registredUsers[numbReg].getPerfilUser(),
-                                                registredUsers[numbReg].getYearBornUser(),
-                                                registredUsers[numbReg].getCpfUser(),
-                                                registredUsers[numbReg].getWeightUser(),
-                                                registredUsers[numbReg].getHeighUser(),
-                                                registredUsers[numbReg].getImcUser(),
-                                                registredUsers[numbReg].isCpfAllowed());
+                Loggin loggedUser = new Loggin(numbReg, registredUsers[numbReg]);
                 
                 //confirmação da identidaed do usuario com a senha e nick do perfil
                 tries = 4;
@@ -140,7 +130,7 @@ public class GymProj {
                 }while(!loggedUser.confirmIdentity(nick, pass));
                 
                 if(tries>0){
-                    System.out.println("-- You're inside of BG-System --\nWelcome, "+loggedUser.getNameUser());
+                    System.out.println("-- You're inside of BG-System --\nWelcome, "+ registredUsers[numbReg].getNameUser());
                 }
               
             }else{
