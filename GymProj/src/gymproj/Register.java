@@ -24,10 +24,10 @@ public class Register{
         this.perfilUser = "";
         this.yearBornUser = 0;
         this.na = numbAccount;
-        this.cpfUser = 0;
-        this.weightUser = 0; 
-        this.heighUser = 0;
-        this.imcUser = 0;
+        this.cpfUser = 0f;
+        this.weightUser = 0f; 
+        this.heighUser = 0f;
+        this.imcUser = 0f;
         this.cpfAllowed = false;
     }
     
