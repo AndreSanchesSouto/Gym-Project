@@ -15,7 +15,7 @@ public class Register{
     
     Calendar cal = Calendar.getInstance();
     
-    private String nameUser, passwordUser, nicknameUser, perfilUser;
+    private String nameUser, passwordUser, nicknameUser, perfilUser, occupationUser;
     private int yearBirthUser;
     private final int na;
     private float weightUser, heighUser, imcUser;
@@ -25,8 +25,9 @@ public class Register{
     public Register(int numbAccount){
         this.nameUser = "";
         this.passwordUser = ""; 
-        this.nicknameUser=""; 
+        this.nicknameUser = ""; 
         this.perfilUser = "";
+        this.occupationUser = "";
         this.yearBirthUser = 0;
         this.na = numbAccount;
         this.cpfUser = 0;
@@ -50,7 +51,7 @@ public class Register{
     }
     
     public String stopPerfilCreation(){
-        return "This cps is already being used, or just dont exist.";
+        return "We couldn't create yout perfil, please, try again";
     }
     
     public String getNameUser(){
@@ -158,7 +159,20 @@ public class Register{
     protected void setPerfilUser(String perfil){
         this.perfilUser = perfil;
     }
-
+    
+    public String getOccupationUser(){
+        return this.occupationUser;
+    }
+    
+    public void setOccupationUser(int occ){
+        switch(occ){
+            case 1 -> this.occupationUser = "coworker";
+            case 2 -> this.occupationUser = "studant";
+           
+        }
+        
+    }
+    
     public float getWeightUser() {
         return this.weightUser;
     }
@@ -201,7 +215,7 @@ public class Register{
     protected boolean isCpfLogged(float cpf){
         return false;
     }
-
+    
     @Override
     public String toString() {
         return "Register{" + "nameUser=" + nameUser + ", passwordUser=" + passwordUser + ", nicknameUser=" + nicknameUser + ", perfilUser=" + perfilUser + ", yearBornUser=" + yearBirthUser + ", cpfUser=" + cpfUser + ", weightUser=" + weightUser + ", heightUser=" + heighUser + ", imcUser=" + imcUser + ", cpfAllowed=" + cpfAllowed + '}';
